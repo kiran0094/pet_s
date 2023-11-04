@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Res from "./result";
 import { useQuery } from "@tanstack/react-query";
 import usebreedlist from "./usebreedlist";
-import fetchsearch from "./feachsearch";
+import fetchSearch from "./feachsearch";
 import "./index.css";
 
 const Search = () => {
@@ -14,10 +14,10 @@ const Search = () => {
   });
   const [animal, setAnimal] = useState("");
   const [breeds] = usebreedlist(animal);
-  const [pet, setpet] = useState([]);
+  // const [pet, setpet] = useState([]);
 
   const results = useQuery(["search", requestParams], fetchSearch);
-  const pets = results?.data?.pets ?? [];
+  const pet = results?.data?.pets ?? [];
 
   return (
     <div className="search_params ">
@@ -76,7 +76,7 @@ const Search = () => {
 
         <button type="submit">Submit</button>
       </form>
-      {console.log(pet)}
+
       <Res pet={pet} />
     </div>
   );
